@@ -1,0 +1,241 @@
+unit UnitCalculadora;
+   
+    {$mode objfpc}{$H+}
+   
+    interface
+   
+    uses
+      Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
+      Menus;
+   
+    type
+   
+      { TForm1 }
+   
+      TForm1 = class(TForm)
+        BtnDivisao: TButton;
+        BtnMultiplicacao: TButton;
+        BtnSete: TButton;
+        BtnOito: TButton;
+        BtnNove: TButton;
+        BtnC: TButton;
+        BtnQuatro: TButton;
+        BtnCinco: TButton;
+        BtnSeis: TButton;
+        BtnDois: TButton;
+        BtnTres: TButton;
+        BtnSubtracao: TButton;
+        BtnAdicao: TButton;
+        BtnUm: TButton;
+        BtnPonto: TButton;
+        BtnIgual: TButton;
+        BtnPorcentagem: TButton;
+        BtnZero: TButton;
+        Edit1: TEdit;
+        Label1: TLabel;
+        MainMenu1: TMainMenu;
+        MenuItem1: TMenuItem;
+        MenuItem2: TMenuItem;
+        Panel1: TPanel;
+        procedure BtnAdicaoClick(Sender: TObject);
+        procedure BtnCClick(Sender: TObject);
+        procedure BtnCincoClick(Sender: TObject);
+        procedure BtnDivisaoClick(Sender: TObject);
+        procedure BtnDoisClick(Sender: TObject);
+        procedure BtnIgualClick(Sender: TObject);
+        procedure BtnMultiplicacaoClick(Sender: TObject);
+        procedure BtnNoveClick(Sender: TObject);
+        procedure BtnOitoClick(Sender: TObject);
+        procedure BtnPorcentagemClick(Sender: TObject);
+        procedure BtnQuatroClick(Sender: TObject);
+        procedure BtnSeisClick(Sender: TObject);
+        procedure BtnSeteClick(Sender: TObject);
+        procedure BtnSubtracaoClick(Sender: TObject);
+        procedure BtnTresClick(Sender: TObject);
+        procedure BtnUmClick(Sender: TObject);
+        procedure BtnPontoClick(Sender: TObject);
+        procedure BtnZeroClick(Sender: TObject);
+      private
+   
+      public
+   
+      end;
+   
+    var
+      Form1: TForm1;
+      valor1, valor2, porcentagem:real;
+      tipoconta:string;
+   
+    implementation
+   
+    {$R *.lfm}
+   
+    { TForm1 }
+   
+    procedure TForm1.BtnAdicaoClick(Sender: TObject);
+    begin
+        tipoconta:='Adição';
+          valor1:=strtofloat(Edit1.text);
+          Edit1.Text:='';
+          Label1.Caption:='+';
+    end;
+   
+    procedure TForm1.BtnCClick(Sender: TObject);
+    begin
+      Edit1.text:='';
+      valor1:=0;
+      valor2:=0;
+      tipoconta:='';
+      Label1.Caption:='';
+    end;
+   
+    procedure TForm1.BtnCincoClick(Sender: TObject);
+    begin
+      Edit1.text:=Edit1.text+'5';
+    end;
+   
+    procedure TForm1.BtnDivisaoClick(Sender: TObject);
+    begin
+         tipoconta:='Divisão';
+          valor1:=strtofloat(Edit1.text);
+          Edit1.Text:='';
+          Label1.Caption:='/';
+    end;
+   
+    procedure TForm1.BtnDoisClick(Sender: TObject);
+    begin
+      Edit1.text:=Edit1.text+'2';
+    end;
+   
+    procedure TForm1.BtnIgualClick(Sender: TObject);
+    begin
+    if tipoconta = 'Adição' then
+          begin
+          valor2:=StrToFloat(edit1.text);
+          edit1.text:=FloatToStr(valor1+valor2);
+   
+        end;
+   
+        if tipoconta = 'Subtração' then
+        begin
+          valor2:=StrToFloat(edit1.text);
+          edit1.text:=FloatToStr(valor1-valor2);
+   
+        end;
+   
+        if tipoconta = 'Divisão' then
+        begin
+          valor2:=StrToFloat(edit1.text);
+          edit1.text:=FloatToStr(valor1/valor2);
+   
+        end;
+        if tipoconta= 'Multiplicação' then
+        begin
+          valor2:=StrToFloat(Edit1.Text);
+          Edit1.Text:=FloatToStr(Valor1 * Valor2);
+        end;
+   
+    end;
+   
+    procedure TForm1.BtnMultiplicacaoClick(Sender: TObject);
+    begin
+         tipoconta:='Multiplicação';
+          valor1:=strtofloat(Edit1.text);
+          Edit1.Text:='';
+          Label1.Caption:='X';
+    end;
+   
+    procedure TForm1.BtnNoveClick(Sender: TObject);
+    begin
+          Edit1.text:=Edit1.text+'9';
+    end;
+   
+    procedure TForm1.BtnOitoClick(Sender: TObject);
+    begin
+        Edit1.text:=Edit1.text+'8';
+    end;
+   
+    procedure TForm1.BtnPorcentagemClick(Sender: TObject);
+    var resultado:real;
+   
+       begin
+   
+        if tipoconta ='Multiplicação' then
+        begin
+   
+         valor2:=strtofloat(edit1.text);
+         resultado:=valor1*valor2/100;
+         Edit1.text:=FloatToStr(resultado);
+         Label1.Caption:='%';
+         end;
+           if tipoconta = 'Adição' then
+       begin
+          porcentagem:=strtofloat(edit1.text);
+          porcentagem:=porcentagem/100;
+          porcentagem:=porcentagem*valor1;
+          edit1.text:=floattostr(valor1+porcentagem);
+   
+       end;
+       if tipoconta = 'Subtração' then
+       begin
+          porcentagem:=strtofloat(edit1.text);
+          porcentagem:=porcentagem/100;
+          porcentagem:=porcentagem*valor1;
+          edit1.text:=floattostr(valor1-porcentagem);
+   
+   
+           end;
+        if tipoconta = 'Divisão' then
+       begin
+          porcentagem:=strtofloat(edit1.text);
+          porcentagem:=porcentagem/100;
+          porcentagem:=porcentagem*valor1;
+          edit1.text:=floattostr(valor1/porcentagem);
+    end;
+   
+    end;
+   
+    procedure TForm1.BtnQuatroClick(Sender: TObject);
+    begin
+       Edit1.text:=Edit1.text+'4';
+    end;
+   
+    procedure TForm1.BtnSeisClick(Sender: TObject);
+    begin
+      Edit1.text:=Edit1.text+'6';
+    end;
+   
+    procedure TForm1.BtnSeteClick(Sender: TObject);
+    begin
+         Edit1.text:=Edit1.text+'7';
+    end;
+   
+    procedure TForm1.BtnSubtracaoClick(Sender: TObject);
+    begin
+       tipoconta:='Subtração';
+          valor1:=strtofloat(Edit1.text);
+          Edit1.Text:='';
+          Label1.Caption:='-';
+    end;
+   
+    procedure TForm1.BtnTresClick(Sender: TObject);
+    begin
+      Edit1.text:=Edit1.text+'3';
+    end;
+   
+    procedure TForm1.BtnUmClick(Sender: TObject);
+    begin
+      Edit1.text:=Edit1.text+'1';
+    end;
+   
+    procedure TForm1.BtnPontoClick(Sender: TObject);
+    begin
+       Edit1.text:=Edit1.text+'.';
+    end;
+   
+    procedure TForm1.BtnZeroClick(Sender: TObject);
+    begin
+      Edit1.text:=Edit1.text+'0';
+    end;
+   
+    end.
